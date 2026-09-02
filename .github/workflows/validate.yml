@@ -1,0 +1,33 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: obs-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  kubeconform:
+    uses: Curtis736/taskboard-actions/.github/workflows/kubeconform.yml@main
+    with:
+      kustomize-dirs: k8s/base
+
+  promtool:
+    name: promtool check config
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install promtool
+        run: |
+          curl -fsSL -o /tmp/prometheus.tgz \
+            https://github.com/prometheus/prometheus/releases/download/v2.54.1/prometheus-2.54.1.linux-amd64.tar.gz
+          tar -C /tmp -xzf /tmp/prometheus.tgz
+          sudo mv /tmp/prometheus-2.54.1.linux-amd64/promtool /usr/local/bin/promtool
+      - name: Check prometheus.yml
+        run: promtool check config k8s/base/prometheus.yml
