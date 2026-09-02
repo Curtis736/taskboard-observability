@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboards-provisioning
+  namespace: taskboard-obs
+  labels:
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/part-of: taskboard
+data:
+  dashboards.yaml: |
+    apiVersion: 1
+    providers:
+      - name: taskboard
+        orgId: 1
+        folder: TaskBoard
+        type: file
+        disableDeletion: false
+        options:
+          path: /var/lib/grafana/dashboards
