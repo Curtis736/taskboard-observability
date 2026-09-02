@@ -50,6 +50,8 @@ Pas de cluster en Actions. Pas de secrets AWS.
 | GitOps | [taskboard-gitops](https://github.com/Curtis736/taskboard-gitops) |
 | Observabilité | ce dépôt |
 | ECS / VPC | [aws-ecs-terraform](https://github.com/Curtis736/aws-ecs-terraform) |
+| FinOps | [taskboard-finops](https://github.com/Curtis736/taskboard-finops) |
+| Performance | [taskboard-performance](https://github.com/Curtis736/taskboard-performance) |
 | Modules Terraform | [taskboard-terraform-modules](https://github.com/Curtis736/taskboard-terraform-modules) |
 | CI réutilisable | [taskboard-actions](https://github.com/Curtis736/taskboard-actions) |
 
